@@ -1,14 +1,11 @@
 package com.example.application.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Lob;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
+
+
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
@@ -23,7 +20,7 @@ public class User extends AbstractEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
     @Lob
-    @Column(length = 1000000)
+    @Column(length = 1000000, columnDefinition = "BYTEA")
     private byte[] profilePicture;
 
     public String getUsername() {
